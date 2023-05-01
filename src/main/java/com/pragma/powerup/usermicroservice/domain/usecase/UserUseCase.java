@@ -14,8 +14,8 @@ public class UserUseCase implements IUserServicePort {
     }
 
     @Override
-    public void saveUser(User user) {
-        userPersistencePort.saveUser(user);
+    public void createUser(User user) {
+        userPersistencePort.createUser(user);
     }
 
     @Override
@@ -23,23 +23,5 @@ public class UserUseCase implements IUserServicePort {
         userPersistencePort.deleteUser(user);
     }
 
-    @Override
-    public List<User> getAllProviders(int page) {
-        return userPersistencePort.getAllProviders(page);
-    }
 
-    @Override
-    public User getProvider(Long id) {
-        return userPersistencePort.getProvider(id);
-    }
-
-    @Override
-    public User getEmployee(Long id) {
-        return userPersistencePort.getEmployee(id);
-    }
-
-    @Override
-    public User getClient(Long id) {
-        return userPersistencePort.getClient(id);
-    }
 }
