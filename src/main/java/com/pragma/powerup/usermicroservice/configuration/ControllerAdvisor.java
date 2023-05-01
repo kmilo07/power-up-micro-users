@@ -60,7 +60,7 @@ public class ControllerAdvisor {
 
     @ExceptionHandler(EmailAlreadyExistsException.class)
     public ResponseEntity<Map<String, String>> handleMailAlreadyExistsException(
-            EmailAlreadyExistsException mailAlreadyExistsException) {
+            EmailAlreadyExistsException emailAlreadyExistsException) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, MAIL_ALREADY_EXISTS_MESSAGE));
     }

@@ -33,11 +33,11 @@ public class JwtProvider {
     private int expiration;
 
     public String generateToken(Authentication authentication) {
-        PrincipalUser usuarioPrincipal = (PrincipalUser) authentication.getPrincipal();
-        List<String> roles = usuarioPrincipal.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
+//        PrincipalUser usuarioPrincipal = (PrincipalUser) authentication.getPrincipal();
+//        List<String> roles = usuarioPrincipal.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
         return Jwts.builder()
-                .setSubject(usuarioPrincipal.getUsername())
-                .claim("roles", roles)
+                .setSubject("milo")
+                .claim("roles", 1)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + expiration * 180))
                 .signWith(SignatureAlgorithm.HS256, secret.getBytes())

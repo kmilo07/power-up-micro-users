@@ -21,8 +21,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Autowired
     JwtProvider jwtProvider;
 
-    @Autowired
-    UserDetailsServiceImpl userDetailsService;
 
     private List<String> excludedPrefixes = Arrays.asList("/auth/**", "/swagger-ui/**", "/actuator/**", "/person/");
     private AntPathMatcher pathMatcher = new AntPathMatcher();
@@ -33,11 +31,11 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         String token = getToken(req);
         if (token != null && jwtProvider.validateToken(token)) {
             String nombreUsuario = jwtProvider.getNombreUsuarioFromToken(token);
-            UserDetails userDetails = userDetailsService.loadUserByUsername(nombreUsuario);
-
-            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null,
-                    userDetails.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(auth);
+//            UserDetails userDetails = userDetailsService.loadUserByUsername(nombreUsuario);
+//
+//            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null,
+//                    userDetails.getAuthorities());
+//            SecurityContextHolder.getContext().setAuthentication(auth);
         }
         filterChain.doFilter(req, res);
     }
