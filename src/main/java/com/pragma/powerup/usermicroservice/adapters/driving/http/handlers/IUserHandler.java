@@ -4,7 +4,6 @@ import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.Use
 
 public interface IUserHandler {
     void createUser(UserRequestDto userRequestDto);
-    void updateUser(UserRequestDto userRequestDto);
     void deleteUser(UserRequestDto userRequestDto);
 
 }
