@@ -7,7 +7,6 @@ import com.pragma.powerup.usermicroservice.domain.api.IUserServicePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,11 +18,6 @@ public class UserHandlerImpl implements IUserHandler {
     @Override
     public void createUser(UserRequestDto userRequestDto) {
         userServicePort.createUser(userRequestMapper.toUser(userRequestDto));
-    }
-
-    @Override
-    public void updateUser(UserRequestDto userRequestDto) {
-
     }
 
     @Override

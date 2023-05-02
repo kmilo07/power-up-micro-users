@@ -26,7 +26,9 @@ public class UserMysqlAdapter implements IUserPersistencePort {
         if(userRepository.findByEmail(user.getEmail()).isPresent()){
             throw new EmailAlreadyExistsException();
         }
-        roleRepository.findById(user.getIdRol()).orElseThrow(RoleNotFoundException::new);
+        if(roleRepository.findById(user.getIdRol()).isPresent()){
+            throw new RoleNotFoundException();
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(userEntityMapper.toEntity(user));
     }
@@ -34,7 +36,7 @@ public class UserMysqlAdapter implements IUserPersistencePort {
     @Override
     public void deleteUser(User user) {
         if (userRepository.findByDniNumber(user.getDniNumber()).isPresent()) {
-            userRepository.deleteByUserId(user.getId());
+            userRepository.deleteById(user.getId());
         }
         else {
             throw new UserNotFoundException();
