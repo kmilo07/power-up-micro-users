@@ -7,7 +7,7 @@ import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.mappers.IUs
 import com.pragma.powerup.usermicroservice.domain.model.User;
 import com.pragma.powerup.usermicroservice.domain.spi.IUserPersistencePort;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -17,7 +17,7 @@ public class UserMysqlAdapter implements IUserPersistencePort {
     private final IUserRepository userRepository;
     private final IRoleRepository roleRepository;
     private final IUserEntityMapper userEntityMapper;
-    private final PasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     @Override
     public void createUser(User user) {
         if (userRepository.findByDniNumber(user.getDniNumber()).isPresent()) {
@@ -26,10 +26,10 @@ public class UserMysqlAdapter implements IUserPersistencePort {
         if(userRepository.findByEmail(user.getEmail()).isPresent()){
             throw new EmailAlreadyExistsException();
         }
-        if(roleRepository.findById(user.getIdRol()).isPresent()){
+        if(roleRepository.findById(user.getIdRol()).isEmpty()){
             throw new RoleNotFoundException();
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(userEntityMapper.toEntity(user));
     }
 

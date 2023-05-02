@@ -15,7 +15,7 @@ import com.pragma.powerup.usermicroservice.domain.usecase.UserUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @RequiredArgsConstructor
@@ -24,7 +24,7 @@ public class BeanConfiguration {
     private final IUserRepository userRepository;
     private final IRoleEntityMapper roleEntityMapper;
     private final IUserEntityMapper userEntityMapper;
-    private final PasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     @Bean
     public IRoleServicePort roleServicePort() {
         return new RoleUseCase(rolePersistencePort());
@@ -40,6 +40,6 @@ public class BeanConfiguration {
     }
     @Bean
     public IUserPersistencePort userPersistencePort() {
-        return new UserMysqlAdapter(userRepository, roleRepository, userEntityMapper, passwordEncoder);
+        return new UserMysqlAdapter(userRepository, roleRepository, userEntityMapper, bCryptPasswordEncoder);
     }
 }
