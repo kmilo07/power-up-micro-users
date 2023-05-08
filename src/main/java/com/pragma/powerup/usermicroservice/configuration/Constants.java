@@ -11,6 +11,7 @@ public class Constants {
     public static final Long PROVIDER_ROLE_ID = 3L;
     public static final int MAX_PAGE_SIZE = 2;
     public static final String REGEX_PHONE = "^([0-9]{10,11})|(\\+[0-9]{12,13})$";
+    public static final String REGEX_DOCUMENT_DIGITS = "^\\d{5,11}$";
     public static final String ROLES = "roles";
     public static final String RESPONSE_MESSAGE_KEY = "message";
     public static final String USER_CREATED_MESSAGE = "User created successfully";

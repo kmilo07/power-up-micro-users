@@ -21,6 +21,7 @@ public class UserRequestDto {
     @Size(min = 3, max = 20)
     private String surname;
     @NotBlank
+    @Pattern(regexp = Constants.REGEX_DOCUMENT_DIGITS, message = "El número de documento que ha ingresado no es válido")
     private String dniNumber;
     @NotBlank()
     @Pattern(regexp = Constants.REGEX_PHONE, message = "El número de celular que ha ingresado no es válido")
