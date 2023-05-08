@@ -1,8 +1,13 @@
 package com.pragma.powerup.usermicroservice.domain.usecase;
 
 import com.pragma.powerup.usermicroservice.domain.api.IUserServicePort;
+import com.pragma.powerup.usermicroservice.domain.exceptions.BirthdateIsEmptyException;
+import com.pragma.powerup.usermicroservice.domain.exceptions.UserIsMinorException;
 import com.pragma.powerup.usermicroservice.domain.model.User;
 import com.pragma.powerup.usermicroservice.domain.spi.IUserPersistencePort;
+
+import java.time.LocalDate;
+import java.time.Period;
 
 
 public class UserUseCase implements IUserServicePort {
@@ -14,6 +19,7 @@ public class UserUseCase implements IUserServicePort {
 
     @Override
     public void createUser(User user) {
+        validateBirthdate(user.getBirthdate());
         userPersistencePort.createUser(user);
     }
 
@@ -22,9 +28,28 @@ public class UserUseCase implements IUserServicePort {
         userPersistencePort.deleteUser(user);
     }
 
+    public void validateBirthdate(LocalDate birthday){
+        validateBirthdateNotEmpty(birthday);
+        validateUserIsOlder(birthday);
+    }
+
+    public void validateBirthdateNotEmpty(LocalDate birthday){
+        if (birthday == null){
+            throw new BirthdateIsEmptyException();
+        }
+    }
+
+    private void validateUserIsOlder(LocalDate birthday) {
+        LocalDate currentDate = LocalDate.now();
+
+        Period edad = Period.between(birthday, currentDate);
+
+        if (edad.getYears() < 18) {
+            throw new UserIsMinorException();
+        }
+    }
+
      /*TODO
-    * "1. Al crear una cuenta, se deben solicitar los siguientes campos obligatorios:
-Nombre, Apellido, DocumentoDeIdentidad, celular, fechaNacimiento, correo y clave(encriptada con bcrypt)
 2. Se debe verificar estructura de email válida, el teléfono debe contener un máximo de 13 caracteres y puede contener el símbolo +. Ejemplo: +573005698325, El documento de identidad debe ser únicamente numérico.
 3. el usuario quedara con el rol propietario.
 4. El usuario debe ser mayor de edad"
