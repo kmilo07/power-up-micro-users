@@ -6,9 +6,9 @@ VALUES
     (
         '1997-07-01',
         '123',
-        'email@some.com',
-        'Name',
-        '$2a$10$GlsGSNhkbVon6ZOSNMptOu5RikedRzlCAhMa7YpwvUSS0c88WT99S',
+        'camilo@gmail.com',
+        'camilo',
+        '$2a$10$wYUCpxXCCjCLgrYXAl4oTeS2aK6zFh4T24rAtqDjSupcdEoA2h/my',
         '1234567890',
         'Surname',
         1

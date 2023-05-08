@@ -3,7 +3,9 @@ package com.pragma.powerup.usermicroservice.configuration.security.jwt;
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.JWTParser;
+import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.PrincipalUser;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.JwtResponseDto;
+import com.pragma.powerup.usermicroservice.configuration.Constants;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -24,7 +26,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class JwtProvider {
-    private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
+    private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
     @Value("${jwt.secret}")
     private String secret;
@@ -33,13 +35,13 @@ public class JwtProvider {
     private int expiration;
 
     public String generateToken(Authentication authentication) {
-//        PrincipalUser usuarioPrincipal = (PrincipalUser) authentication.getPrincipal();
-//        List<String> roles = usuarioPrincipal.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
+        PrincipalUser usuarioPrincipal = (PrincipalUser) authentication.getPrincipal();
+        List<String> roles = usuarioPrincipal.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
         return Jwts.builder()
-                .setSubject("milo")
-                .claim("roles", 1)
+                .setSubject(usuarioPrincipal.getUsername())
+                .claim(Constants.ROLES, roles)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime() + expiration * 180))
+                .setExpiration(new Date(new Date().getTime() + expiration * 180L))
                 .signWith(SignatureAlgorithm.HS256, secret.getBytes())
                 .compact();
     }
@@ -73,12 +75,11 @@ public class JwtProvider {
             JWT jwt = JWTParser.parse(jwtResponseDto.getToken());
             JWTClaimsSet claims = jwt.getJWTClaimsSet();
             String nombreUsuario = claims.getSubject();
-            List<String> roles = claims.getStringListClaim("roles");
-            //List<String> roles = (List<String>) claims.getClaim("roles");
+            List<String> roles = claims.getStringListClaim(Constants.ROLES);
 
             return Jwts.builder()
                     .setSubject(nombreUsuario)
-                    .claim("roles", roles)
+                    .claim(Constants.ROLES, roles)
                     .setIssuedAt(new Date())
                     .setExpiration(new Date(new Date().getTime() + expiration))
                     .signWith(SignatureAlgorithm.HS256, secret.getBytes())
