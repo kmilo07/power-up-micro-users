@@ -14,15 +14,15 @@ public class User {
     private Long idRol;
 
     public User(Long id, String name, String surname, String dniNumber, String phone, LocalDate birthdate, String email, String password, Long idRol) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.dniNumber = dniNumber;
-        this.phone = phone;
-        this.birthdate = birthdate;
-        this.email = email;
-        this.password = password;
-        this.idRol = idRol;
+        setId(id);
+        setName(name);
+        setSurname(surname);
+        setDniNumber(dniNumber);
+        setPhone(phone);
+        setBirthdate(birthdate);
+        setEmail(email);
+        setPassword(password);
+        setIdRol(idRol);
     }
 
     public Long getId() {
