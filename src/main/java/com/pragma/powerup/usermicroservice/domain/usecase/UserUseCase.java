@@ -41,17 +41,13 @@ public class UserUseCase implements IUserServicePort {
 
     private void validateUserIsOlder(LocalDate birthday) {
         LocalDate currentDate = LocalDate.now();
-
-        Period edad = Period.between(birthday, currentDate);
-
-        if (edad.getYears() < 18) {
+        Period age = Period.between(birthday, currentDate);
+        if (age.getYears() < 18) {
             throw new UserIsMinorException();
         }
     }
 
      /*TODO
-2. Se debe verificar estructura de email válida, el teléfono debe contener un máximo de 13 caracteres y puede contener el símbolo +. Ejemplo: +573005698325, El documento de identidad debe ser únicamente numérico.
 3. el usuario quedara con el rol propietario.
-4. El usuario debe ser mayor de edad"
     * */
 }
