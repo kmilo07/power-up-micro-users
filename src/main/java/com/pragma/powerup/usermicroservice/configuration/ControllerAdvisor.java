@@ -7,6 +7,7 @@ import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.UserAlreadyExistsException;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.UserNotFoundException;
 import com.pragma.powerup.usermicroservice.domain.exceptions.BirthdateIsEmptyException;
+import com.pragma.powerup.usermicroservice.domain.exceptions.UserDoesNotHavePermissionException;
 import com.pragma.powerup.usermicroservice.domain.exceptions.UserIsMinorException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -88,14 +89,19 @@ public class ControllerAdvisor {
     @ExceptionHandler(BirthdateIsEmptyException.class)
     public ResponseEntity<Map<String, String>> handleBirthdateIsEmptyException(BirthdateIsEmptyException birthdateIsEmptyException){
         return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
-                .body(Collections.singletonMap(BIRTHDATE_CANNOT_BE_EMPTY,BIRTHDATE_CANNOT_BE_EMPTY));
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY,BIRTHDATE_CANNOT_BE_EMPTY));
     }
 
     @ExceptionHandler(UserIsMinorException.class)
     public ResponseEntity<Map<String, String>> handleUserIsMinorException(UserIsMinorException userIsMinorException){
         return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
-                .body(Collections.singletonMap(USER_IS_MINOR,USER_IS_MINOR));
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY,USER_IS_MINOR));
     }
 
+    @ExceptionHandler(UserDoesNotHavePermissionException.class)
+    public ResponseEntity<Map<String,String>> handleUserDoesNotHavePermissionException(UserDoesNotHavePermissionException e){
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY,USER_DOES_NOT_HAVE_PERMISSION));
+    }
 
 }

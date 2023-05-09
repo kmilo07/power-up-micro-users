@@ -5,10 +5,13 @@ public class Constants {
     private Constants() {
         throw new IllegalStateException("Utility class");
     }
-
-    public static final Long CLIENT_ROLE_ID = 1L;
-    public static final Long EMPLOYEE_ROLE_ID = 2L;
-    public static final Long PROVIDER_ROLE_ID = 3L;
+    public static final Long OWNER_ROLE_ID = 2L;
+    public static final Long EMPLOYER_ROLE_ID = 3L;
+    public static final Long CLIENT_ROLE_ID = 4L;
+    public static final String ADMIN_ROLE_NAME = "ROLE_ADMIN";
+    public static final String OWNER_ROLE_NAME = "ROLE_OWNER";
+    public static final String EMPLOYER_ROLE_NAME = "ROLE_EMPLOYER";
+    public static final String CLIENT_ROLE_NAME = "ROLE_USER";
     public static final int MAX_PAGE_SIZE = 2;
     public static final String REGEX_PHONE = "^([0-9]{10,11})|(\\+[0-9]{12,13})$";
     public static final String REGEX_DOCUMENT_DIGITS = "^\\d{5,11}$";
@@ -33,4 +36,5 @@ public class Constants {
 
     public static final String BIRTHDATE_CANNOT_BE_EMPTY = "Birthdate cannot be empty";
     public static final String USER_IS_MINOR = "User is a minor";
+    public static final String USER_DOES_NOT_HAVE_PERMISSION = "User doesn't have permission to create another user";
 }

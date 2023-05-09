@@ -1,5 +1,7 @@
 INSERT INTO `role`  (`id`, `description`, `name`) VALUES (1, 'ROLE_ADMIN', 'ROLE_ADMIN');
-INSERT INTO `role`  (`id`, `description`, `name`) VALUES (2, 'ROLE_USER', 'ROLE_USER');
+INSERT INTO `role`  (`id`, `description`, `name`) VALUES (2, 'ROLE_OWNER', 'ROLE_OWNER');
+INSERT INTO `role`  (`id`, `description`, `name`) VALUES (3, 'ROLE_EMPLOYER', 'ROLE_EMPLOYER');
+INSERT INTO `role`  (`id`, `description`, `name`) VALUES (4, 'ROLE_USER', 'ROLE_USER');
 
 INSERT INTO `user`  (birthdate, dni_number, email, name, password, phone, surname, id_role)
 VALUES
