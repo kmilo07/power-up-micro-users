@@ -37,4 +37,17 @@ public class Constants {
     public static final String BIRTHDATE_CANNOT_BE_EMPTY = "Birthdate cannot be empty";
     public static final String USER_IS_MINOR = "User is a minor";
     public static final String USER_DOES_NOT_HAVE_PERMISSION = "User doesn't have permission to create another user";
+
+    public static final String MANDATORY_NAME = "Name is mandatory";
+    public static final String MANDATORY_SURNAME = "Surname is mandatory";
+    public static final String MANDATORY_DOCUMENT = "Document number is mandatory";
+    public static final String MANDATORY_PHONE = "Phone is mandatory";
+    public static final String MANDATORY_EMAIL = "Email is mandatory";
+    public static final String MANDATORY_PASSWORD = "Password is mandatory";
+    public static final String NAME_IS_INVALID = "Name is invalid";
+    public static final String SURNAME_IS_INVALID = "Surname is invalid";
+    public static final String EMAIL_IS_INVALID = "Email is invalid";
+    public static final String DOCUMENT_IS_INVALID = "Document number is invalid";
+    public static final String PHONE_IS_INVALID = "Phone is invalid";
+
 }

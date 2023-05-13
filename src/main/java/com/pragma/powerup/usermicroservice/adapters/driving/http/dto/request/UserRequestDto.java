@@ -14,23 +14,23 @@ import java.time.LocalDate;
 @Getter
 public class UserRequestDto {
     private Long id;
-    @NotBlank()
-    @Size(min = 3, max = 20)
+    @NotBlank(message = Constants.MANDATORY_NAME)
+    @Size(min = 3, max = 20, message = Constants.NAME_IS_INVALID)
     private String name;
-    @NotBlank()
-    @Size(min = 3, max = 20)
+    @NotBlank(message = Constants.MANDATORY_SURNAME)
+    @Size(min = 3, max = 20, message = Constants.SURNAME_IS_INVALID)
     private String surname;
-    @NotBlank
-    @Pattern(regexp = Constants.REGEX_DOCUMENT_DIGITS, message = "El número de documento que ha ingresado no es válido")
+    @NotBlank(message = Constants.MANDATORY_DOCUMENT)
+    @Pattern(regexp = Constants.REGEX_DOCUMENT_DIGITS, message = Constants.DOCUMENT_IS_INVALID)
     private String dniNumber;
-    @NotBlank()
-    @Pattern(regexp = Constants.REGEX_PHONE, message = "El número de celular que ha ingresado no es válido")
+    @NotBlank(message = Constants.MANDATORY_PHONE)
+    @Pattern(regexp = Constants.REGEX_PHONE, message = Constants.PHONE_IS_INVALID)
     private String phone;
     private LocalDate birthdate;
-    @NotBlank
-    @Email
+    @NotBlank(message = Constants.MANDATORY_EMAIL)
+    @Email(message = Constants.EMAIL_IS_INVALID)
     private String email;
-    @NotBlank()
+    @NotBlank(message = Constants.MANDATORY_PASSWORD)
     private String password;
     private Long idRol;
 }
