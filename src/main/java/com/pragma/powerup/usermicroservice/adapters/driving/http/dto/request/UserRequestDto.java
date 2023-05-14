@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Getter
 public class UserRequestDto {
-    private Long id;
     @NotBlank(message = Constants.MANDATORY_NAME)
     @Size(min = 3, max = 20, message = Constants.NAME_IS_INVALID)
     private String name;
@@ -32,5 +31,4 @@ public class UserRequestDto {
     private String email;
     @NotBlank(message = Constants.MANDATORY_PASSWORD)
     private String password;
-    private Long idRol;
 }

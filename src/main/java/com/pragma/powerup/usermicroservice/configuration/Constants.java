@@ -35,7 +35,7 @@ public class Constants {
     public static final String SWAGGER_TERMS_OF_SERVICE_MESSAGE = "http://swagger.io/terms/";
 
     public static final String BIRTHDATE_CANNOT_BE_EMPTY = "Birthdate cannot be empty";
-    public static final String USER_IS_MINOR = "User is a minor";
+    public static final String USER_IS_MINOR = "User is minor";
     public static final String USER_DOES_NOT_HAVE_PERMISSION = "User doesn't have permission to create another user";
 
     public static final String MANDATORY_NAME = "Name is mandatory";
