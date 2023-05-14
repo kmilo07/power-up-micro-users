@@ -7,11 +7,11 @@ public class Constants {
     }
     public static final Long OWNER_ROLE_ID = 2L;
     public static final Long EMPLOYER_ROLE_ID = 3L;
-    public static final Long CLIENT_ROLE_ID = 4L;
+    public static final Long CUSTOMER_ROLE_ID = 4L;
     public static final String ADMIN_ROLE_NAME = "ROLE_ADMIN";
     public static final String OWNER_ROLE_NAME = "ROLE_OWNER";
     public static final String EMPLOYER_ROLE_NAME = "ROLE_EMPLOYER";
-    public static final String CLIENT_ROLE_NAME = "ROLE_USER";
+    public static final String CUSTOMER_ROLE_NAME = "ROLE_CUSTOMER";
     public static final int MAX_PAGE_SIZE = 2;
     public static final String REGEX_PHONE = "^([0-9]{10,11})|(\\+[0-9]{12,13})$";
     public static final String REGEX_DOCUMENT_DIGITS = "^\\d{5,11}$";
