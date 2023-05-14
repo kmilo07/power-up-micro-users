@@ -44,6 +44,6 @@ public class AuthHandlerImpl implements IAuthHandler {
             String nombreUsuario = jwtProvider.getNombreUsuarioFromToken(token);
             userDetailsService.loadUserByUsername(nombreUsuario);
         }
-        return true;
+        return jwtProvider.validateToken(token);
     }
 }
