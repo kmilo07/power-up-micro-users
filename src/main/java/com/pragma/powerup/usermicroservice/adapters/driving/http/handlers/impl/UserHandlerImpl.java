@@ -16,8 +16,8 @@ public class UserHandlerImpl implements IUserHandler {
     private final IUserRequestMapper userRequestMapper;
 
     @Override
-    public void createUser(UserRequestDto userRequestDto, String token) {
-        userServicePort.createUser(userRequestMapper.toUser(userRequestDto), token);
+    public void createUser(UserRequestDto userRequestDto) {
+        userServicePort.createUser(userRequestMapper.toUser(userRequestDto));
     }
 
     @Override

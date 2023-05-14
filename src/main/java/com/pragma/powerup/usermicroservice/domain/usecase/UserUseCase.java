@@ -1,20 +1,16 @@
 package com.pragma.powerup.usermicroservice.domain.usecase;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pragma.powerup.usermicroservice.configuration.Constants;
-import com.pragma.powerup.usermicroservice.configuration.security.exception.TokenException;
 import com.pragma.powerup.usermicroservice.domain.api.IUserServicePort;
 import com.pragma.powerup.usermicroservice.domain.exceptions.BirthdateIsEmptyException;
 import com.pragma.powerup.usermicroservice.domain.exceptions.UserDoesNotHavePermissionException;
 import com.pragma.powerup.usermicroservice.domain.exceptions.UserIsMinorException;
 import com.pragma.powerup.usermicroservice.domain.model.User;
 import com.pragma.powerup.usermicroservice.domain.spi.IUserPersistencePort;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Base64;
-import java.util.HashMap;
 
 
 public class UserUseCase implements IUserServicePort {
@@ -25,8 +21,8 @@ public class UserUseCase implements IUserServicePort {
     }
 
     @Override
-    public void createUser(User user, String token) {
-        String role = getRole(token);
+    public void createUser(User user) {
+        String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().orElseThrow(UserDoesNotHavePermissionException::new).toString();
         validateBirthdate(user.getBirthdate());
         setRoleDependingOnUserRole(user,role);
         userPersistencePort.createUser(user);
@@ -68,16 +64,4 @@ public class UserUseCase implements IUserServicePort {
         }
     }
 
-    private String getRole(String token){
-        String payload = token.split("\\.")[1];
-        String json = new String(Base64.getDecoder().decode(payload));
-        String role;
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            role = mapper.readValue(json, HashMap.class).get("roles").toString();
-        } catch (JsonProcessingException e) {
-            throw new TokenException();
-        }
-        return role.replace("[","").replace("]","");
-    }
 }
