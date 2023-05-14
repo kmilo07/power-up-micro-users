@@ -26,7 +26,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     UserDetailsService userDetailsService;
 
 
-    private List<String> excludedPrefixes = Arrays.asList("/auth/**", "/swagger-ui/**", "/actuator/**", "/user");
+    private List<String> excludedPrefixes = Arrays.asList("/auth/**", "/swagger-ui/**", "/actuator/**");
     private AntPathMatcher pathMatcher = new AntPathMatcher();
 
     @Override

@@ -24,6 +24,7 @@ public class UserEntity{
     private String dniNumber;
     private String phone;
     private LocalDate birthdate;
+    @Column(unique = true, nullable = false)
     private String email;
     private String password;
     @ManyToOne
