@@ -47,13 +47,38 @@ To get a local copy up and running follow these steps.
           password: <your-password>
    ```
 5. After the tables are created execute src/main/resources/data.sql content to populate the database
-6. Open Swagger UI and search the /auth/login endpoint and login with userDni: 123, password: 1234
+6. Open Swagger UI and search the /auth/login endpoint and login with email: camilo@gmail.com, password: 1234
 
 <!-- USAGE -->
 ## Usage
 
 1. Right-click the class PowerUpApplication and choose Run
 2. Open [http://localhost:8090/swagger-ui/index.html](http://localhost:8090/swagger-ui/index.html) in your web browser
+
+<!-- NOTE -->
+## Note
+When the project runs, the database is restarted. If you don't want this done, you have to do the following 
+1. In the file application-dev.yml change the line ddl-auto to update
+```yml
+   # src/main/resources/application-dev.yml
+   spring:
+      datasource:
+          url: jdbc:mysql://localhost/powerup
+          username: root
+          password: <your-password>
+      jpa:
+        hibernate:
+           ddl-auto: update
+        defer-datasource-initialization: true
+   ```
+2. You must comment out or remove the following lines sql, As it's shown
+
+```yml
+    #  sql:
+    #    init:
+    #      mode: always
+   ```
+
 
 <!-- ROADMAP -->
 ## Tests
