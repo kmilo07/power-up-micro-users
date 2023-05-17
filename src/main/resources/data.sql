@@ -8,10 +8,10 @@ VALUES
     (
         '1997-07-01',
         '123',
-        'camilo@gmail.com',
-        'camilo',
+        'admin@gmail.com',
+        'admin',
         '$2a$10$wYUCpxXCCjCLgrYXAl4oTeS2aK6zFh4T24rAtqDjSupcdEoA2h/my',
         '1234567890',
-        'Surname',
+        'admin',
         1
     );
