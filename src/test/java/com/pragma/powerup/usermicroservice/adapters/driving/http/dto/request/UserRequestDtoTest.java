@@ -2,6 +2,7 @@ package com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ class UserRequestDtoTest {
     private Validator validator;
 
     private UserRequestDto requestDto;
+
+    @BeforeEach
+    void setUp(){
+        requestDto = new UserRequestDto(GOOD_NAME,GOOD_SURNAME, GOOD_DOCUMENT, GOOD_PHONE,TODAY,GOOD_EMAIL,PASSWORD);
+    }
 
     @DisplayName("Valida si el campo nombre es vacío")
     @Test
@@ -297,4 +303,38 @@ class UserRequestDtoTest {
         }
     }
 
+    @Test
+    void getName() {
+        assertEquals(GOOD_NAME,requestDto.getName());
+    }
+
+    @Test
+    void getSurname() {
+        assertEquals(GOOD_SURNAME,requestDto.getSurname());
+    }
+
+    @Test
+    void getDniNumber() {
+        assertEquals(GOOD_DOCUMENT,requestDto.getDniNumber());
+    }
+
+    @Test
+    void getPhone() {
+        assertEquals(GOOD_PHONE,requestDto.getPhone());
+    }
+
+    @Test
+    void getBirthdate() {
+        assertEquals(TODAY, requestDto.getBirthdate());
+    }
+
+    @Test
+    void getEmail() {
+        assertEquals(GOOD_EMAIL,requestDto.getEmail());
+    }
+
+    @Test
+    void getPassword() {
+        assertEquals(PASSWORD, requestDto.getPassword());
+    }
 }
