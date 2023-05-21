@@ -9,4 +9,5 @@ public interface IAuthHandler {
     JwtResponseDto login(LoginRequestDto loginRequestDto);
     JwtResponseDto refresh(JwtResponseDto jwtResponseDto) throws ParseException;
 
+    boolean tokenIsValid(String token);
 }

@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 
 @RequiredArgsConstructor
 @Transactional
@@ -43,6 +45,9 @@ public class UserMysqlAdapter implements IUserPersistencePort {
         }
     }
 
-
+    @Override
+    public Optional<String> getRoleByUserId(Long userId) {
+        return userRepository.getRoleByUserId(userId);
+    }
 
 }

@@ -38,6 +38,18 @@ public class UserRestController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, Constants.USER_CREATED_MESSAGE));
     }
+
+    @Operation(summary = "Get rol by user_id",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Get rol by user",
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Map"))),
+                    @ApiResponse(responseCode = "404", description = "No data found",
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
+    @GetMapping("/get-rol-by-user-id/{userId}")
+    public ResponseEntity<String> getRolByUser(@PathVariable Long userId) {
+        return ResponseEntity.of(userHandler.getRoleByUserId(userId));
+    }
+
     @Operation(summary = "Delete an user",
             responses = {
                     @ApiResponse(responseCode = "200", description = "User deleted",
