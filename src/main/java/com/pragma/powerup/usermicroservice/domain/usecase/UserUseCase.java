@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Optional;
 
 
 public class UserUseCase implements IUserServicePort {
@@ -43,6 +44,11 @@ public class UserUseCase implements IUserServicePort {
     @Override
     public void deleteUser(User user) {
         userPersistencePort.deleteUser(user);
+    }
+
+    @Override
+    public Optional<String> getRoleByUserId(Long userId) {
+        return userPersistencePort.getRoleByUserId(userId);
     }
 
     public void validateBirthdate(LocalDate birthday){
