@@ -12,7 +12,6 @@ public class Constants {
     public static final String OWNER_ROLE_NAME = "ROLE_OWNER";
     public static final String EMPLOYER_ROLE_NAME = "ROLE_EMPLOYER";
     public static final String CUSTOMER_ROLE_NAME = "ROLE_CUSTOMER";
-    public static final int MAX_PAGE_SIZE = 2;
     public static final String REGEX_PHONE = "^([0-9]{10,11})|(\\+[0-9]{12,13})$";
     public static final String REGEX_DOCUMENT_DIGITS = "^\\d{5,11}$";
     public static final String ROLES = "roles";
@@ -25,7 +24,7 @@ public class Constants {
     public static final String MAIL_ALREADY_EXISTS_MESSAGE = "A person with that mail already exists";
     public static final String ROLE_NOT_FOUND_MESSAGE = "No role found with the id provided";
     public static final String ROLE_NOT_ALLOWED_MESSAGE = "No permission granted to create users with this role";
-    public static final String USER_ALREADY_EXISTS_MESSAGE = "A user already exists with the role provided";
+    public static final String USER_ALREADY_EXISTS_MESSAGE = "A user already exists with the document provided";
     public static final String USER_NOT_FOUND_MESSAGE = "No user found with the role provided";
     public static final String SWAGGER_TITLE_MESSAGE = "User API Pragma Power Up";
     public static final String SWAGGER_DESCRIPTION_MESSAGE = "User microservice";
