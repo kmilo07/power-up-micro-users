@@ -43,7 +43,7 @@ public class MainSecurity {
         http.cors().and().csrf().disable()
                 .authorizeRequests(requests -> requests
                         .requestMatchers("/auth/login", "/auth/token-is-valid/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/actuator/health").permitAll()
-                        .requestMatchers("/user").hasAnyRole("ADMIN","OWNER")
+                        .requestMatchers("/user", "/user/**").hasAnyRole("ADMIN","OWNER")
                         .anyRequest().authenticated()
                 )
                 .formLogin().disable()
