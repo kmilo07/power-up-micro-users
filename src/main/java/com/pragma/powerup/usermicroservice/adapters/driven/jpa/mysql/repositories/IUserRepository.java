@@ -17,4 +17,9 @@ public interface IUserRepository extends JpaRepository<UserEntity, Long> {
             "WHERE  u.id_role = r.id AND " +
             "       u.id = :userId", nativeQuery = true)
     Optional<String> getRoleByUserId(@Param("userId") Long userId);
+
+    @Query(value = "" +
+            "SELECT id  FROM user " +
+            "WHERE  email = :email",nativeQuery = true)
+    Optional<Long> getUserIdByEmail(@Param("email") String email);
 }

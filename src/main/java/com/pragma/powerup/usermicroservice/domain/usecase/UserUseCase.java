@@ -51,6 +51,11 @@ public class UserUseCase implements IUserServicePort {
         return userPersistencePort.getRoleByUserId(userId);
     }
 
+    @Override
+    public Optional<Long> getUserIdByEmail(String email) {
+        return userPersistencePort.getUserIdByEmail(email);
+    }
+
     public void validateBirthdate(LocalDate birthday){
         validateBirthdateNotEmpty(birthday);
         validateUserIsOlder(birthday);

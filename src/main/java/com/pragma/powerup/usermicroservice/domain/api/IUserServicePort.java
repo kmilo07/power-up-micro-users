@@ -9,4 +9,6 @@ public interface IUserServicePort {
     void deleteUser(User user);
 
     Optional<String> getRoleByUserId(Long userId);
+
+    Optional<Long> getUserIdByEmail(String email);
 }

@@ -50,6 +50,17 @@ public class UserRestController {
         return ResponseEntity.of(userHandler.getRoleByUserId(userId));
     }
 
+    @Operation(summary = "Get user_id by email",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Get user by email",
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Map"))),
+                    @ApiResponse(responseCode = "404", description = "No data found",
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
+    @GetMapping("/get-user-id-by-email/{email}")
+    public ResponseEntity<Long> getUserIdByEmail(@PathVariable String email) {
+        return ResponseEntity.of(userHandler.getUserIdByEmail(email));
+    }
+
     @Operation(summary = "Delete an user",
             responses = {
                     @ApiResponse(responseCode = "200", description = "User deleted",

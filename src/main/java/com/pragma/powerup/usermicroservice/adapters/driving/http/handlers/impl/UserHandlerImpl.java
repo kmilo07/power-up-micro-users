@@ -32,4 +32,9 @@ public class UserHandlerImpl implements IUserHandler {
         return userServicePort.getRoleByUserId(userId);
     }
 
+    @Override
+    public Optional<Long> getUserIdByEmail(String email) {
+        return userServicePort.getUserIdByEmail(email);
+    }
+
 }

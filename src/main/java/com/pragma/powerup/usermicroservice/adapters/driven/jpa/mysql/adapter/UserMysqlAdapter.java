@@ -50,4 +50,9 @@ public class UserMysqlAdapter implements IUserPersistencePort {
         return userRepository.getRoleByUserId(userId);
     }
 
+    @Override
+    public Optional<Long> getUserIdByEmail(String email) {
+        return userRepository.getUserIdByEmail(email);
+    }
+
 }
